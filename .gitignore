@@ -1,1 +1,13 @@
 /target
+
+# VS Code settings
+.vscode/
+
+# OS and editor files
+.DS_Store
+*.swp
+*.swo
+*.log
+.idea/
+*.pyc
+__pycache__/
