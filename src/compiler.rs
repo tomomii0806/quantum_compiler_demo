@@ -155,6 +155,30 @@ pub fn compile(circuit: &Circuit) -> Circuit {
                     prev_gates[*q] = Some(gate.clone());
                 }
             }
+            Gate::CZ(c, t) => {
+                // CZ is symmetric; CZ-CZ cancels out
+                if let Some(Gate::CZ(pc, pt)) = &prev_gates[*c] {
+                    if (*pc == *c && *pt == *t) || (*pc == *t && *pt == *c) {
+                        optimized.gates.pop();
+                        prev_gates[*c] = None;
+                        prev_gates[*t] = None;
+                    } else {
+                        optimized.add_gate(gate.clone());
+                        prev_gates[*c] = Some(gate.clone());
+                        prev_gates[*t] = Some(gate.clone());
+                    }
+                } else {
+                    optimized.add_gate(gate.clone());
+                    prev_gates[*c] = Some(gate.clone());
+                    prev_gates[*t] = Some(gate.clone());
+                }
+            }
+            // Measurement gates pass through without optimization
+            Gate::Measure(q) | Gate::MeasureX(q) | Gate::MeasureY(q) => {
+                optimized.add_gate(gate.clone());
+                // Measurements break optimization chains
+                prev_gates[*q] = None;
+            }
         }
     }
     optimized

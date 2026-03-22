@@ -14,7 +14,8 @@ impl Circuit {
     pub fn add_gate(&mut self, gate: Gate) {
         // Basic validation: check qubit indices are in range
         match gate {
-            Gate::H(q) | Gate::X(q) | Gate::Y(q) | Gate::Z(q) | Gate::S(q) | Gate::T(q) => {
+            Gate::H(q) | Gate::X(q) | Gate::Y(q) | Gate::Z(q) | Gate::S(q) | Gate::T(q) 
+            | Gate::Measure(q) | Gate::MeasureX(q) | Gate::MeasureY(q) => {
                 if q >= self.num_qubits {
                     panic!("Qubit index out of range!");
                 }
@@ -24,7 +25,7 @@ impl Circuit {
                     panic!("Qubit index out of range!");
                 }
             }
-            Gate::CNOT(c, t) | Gate::SWAP(c, t) => {
+            Gate::CNOT(c, t) | Gate::SWAP(c, t) | Gate::CZ(c, t) => {
                 if c >= self.num_qubits || t >= self.num_qubits || c == t {
                     panic!("Invalid two-qubit gate!");
                 }
