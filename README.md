@@ -2,6 +2,8 @@
 
 A quantum circuit compiler written in Rust for learning fault-tolerant quantum computing. This project demonstrates quantum gate optimization and quantum error correction (QEC) techniques.
 
+> **Learning Project**: This repository is a hands-on learning journey into fault-tolerant quantum computing, developed with GitHub Copilot assistance. The goal is to deeply understand quantum error correction and FTQC architecture through implementation. Code is AI-assisted, but the understanding and learning belong to me.
+
 ## Features
 
 ### Circuit Optimization
@@ -209,4 +211,12 @@ This project is designed for learning fault-tolerant quantum computing concepts 
 - Fault-tolerant circuit design principles
 - Resource estimation for FTQC
 - Industry-standard techniques (surface codes, magic states)
+
+**Development Approach**: This is a learning-focused project where I use GitHub Copilot to accelerate implementation while maintaining deep understanding. Each phase includes:
+- Studying theory from online resources (PennyLane, Qiskit documents/blogs)
+- Implementing concepts with AI assistance
+- Comprehensive documentation of learnings
+- Testing to verify understanding
+
+The goal is not to write every line from scratch, but to understand fault-tolerant quantum computing deeply and efficiently through hands-on implementation.
 
